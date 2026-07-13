@@ -1,4 +1,10 @@
 {
   "item.god123awsomemod.spirit_stone": "Spirit Stone",
-  "item.god123awsomemod.raw_magic_stone": "Raw Magic Stone"
+  "item.god123awsomemod.raw_magic_stone": "Raw Magic Stone",
+
+  "block.god123awsomemod.spirit_stone_block": "Block of Spirit Stone",
+  "block.god123awsomemod.spirit_stone_ore": "Spirit Stone Ore",
+
+  "creativetab.god123awsomemod.cultivation_items": "Cultivation Items",
+  "creativetab.god123awsomemod.cultivation_blocks": "Cultivation Blocks"
 }
