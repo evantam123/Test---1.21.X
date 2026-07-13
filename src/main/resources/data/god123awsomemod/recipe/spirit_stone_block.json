@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "god123awsomemod:spirit_stone_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "god123awsomemod:spirit_stone"
+  }
+}
