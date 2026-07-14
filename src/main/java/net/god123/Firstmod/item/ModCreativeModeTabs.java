@@ -22,6 +22,8 @@ public class ModCreativeModeTabs {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.SPIRIT_STONE);
                 output.accept(ModItems.RAW_MAGIC_STONE);
+                output.accept(ModItems.MYSTIC_IRON_INGOT);
+                output.accept(ModItems.RAW_MYSTIC_IRON);
             }).build());
 
     public static final Supplier<CreativeModeTab> CULTIVATION_BLOCKS_TAB = CREATIVE_MODE_TAB.register("cultivation_blocks_tab", () -> CreativeModeTab.builder()
@@ -31,6 +33,8 @@ public class ModCreativeModeTabs {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModBlocks.SPIRIT_STONE_BLOCK);
                 output.accept(ModBlocks.SPIRIT_STONE_ORE);
+                output.accept(ModBlocks.MYSTIC_IRON_BLOCK);
+                output.accept(ModBlocks.MYSTIC_IRON_ORE);
             }).build());
 
 

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "bismuth",
+  "ingredient": {
+    "item": "god123awsomemod:mystic_iron_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "god123awsomemod:mystic_iron_ingot"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "god123awsomemod:block/mystic_iron_ore"
+  }
+}

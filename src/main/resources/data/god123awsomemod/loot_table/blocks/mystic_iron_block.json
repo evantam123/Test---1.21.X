@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "god123awsomemod:mystic_iron_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "god123awsomemod:mystic_iron_block"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "god123awsomemod:item/mystic_iron_ingot"
+  }
+}
