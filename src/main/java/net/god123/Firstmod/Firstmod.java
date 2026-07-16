@@ -1,6 +1,5 @@
 package net.god123.Firstmod;
 
-import net.god123.Firstmod.CultivationRealm.CultivationRealm;
 import net.god123.Firstmod.block.ModBlocks;
 import net.god123.Firstmod.item.ModCreativeModeTabs;
 import net.god123.Firstmod.item.ModItems;
