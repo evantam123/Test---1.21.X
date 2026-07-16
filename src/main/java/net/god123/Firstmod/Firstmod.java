@@ -1,24 +1,17 @@
 package net.god123.Firstmod;
 
+import net.god123.Firstmod.CultivationRealm.CultivationRealm;
 import net.god123.Firstmod.block.ModBlocks;
 import net.god123.Firstmod.item.ModCreativeModeTabs;
 import net.god123.Firstmod.item.ModItems;
+import net.god123.Firstmod.mana.ManaCommand;
+import net.god123.Firstmod.mana.ManaHudOverlay;
+import net.god123.Firstmod.mana.ModPlayerMana;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -27,15 +20,10 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraft.client.Minecraft;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Firstmod.MODID)
@@ -43,6 +31,13 @@ public class Firstmod {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "god123awsomemod";
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        // 呼叫我們剛剛寫好的指令註冊方法
+        ManaCommand.register(event.getDispatcher());
+        LOGGER.info("Mana 指令註冊成功！");
+    }
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -54,6 +49,9 @@ public class Firstmod {
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+
+        ModPlayerMana.register(modEventBus);
+        //ModPlayerCultivationRealm.register(modEventBus);
 
         ModCreativeModeTabs.register(modEventBus);
 
@@ -95,6 +93,15 @@ public class Firstmod {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+
+        @SubscribeEvent
+        static void onRegisterGuiLayers(net.neoforged.neoforge.client.event.RegisterGuiLayersEvent event) {
+            event.registerAbove(
+                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("minecraft", "hotbar"),
+                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(Firstmod.MODID, "mana_hud"),
+                    (ManaHudOverlay::render)
+            );
         }
     }
 }
