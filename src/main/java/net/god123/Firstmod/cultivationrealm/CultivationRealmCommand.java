@@ -14,7 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 import static net.god123.Firstmod.cultivationrealm.CultivationRealmData.*;
 
-@EventBusSubscriber(modid = "god123awsomemod", bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = "god123awsomemod")
 public class CultivationRealmCommand {
 
     @SubscribeEvent
