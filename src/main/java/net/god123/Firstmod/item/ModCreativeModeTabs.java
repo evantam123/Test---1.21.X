@@ -17,13 +17,18 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Firstmod.MODID);
 
     public static final Supplier<CreativeModeTab> CULTIVATION_ITEMS_TAB = CREATIVE_MODE_TAB.register("cultivation_items_tab", () -> CreativeModeTab.builder()
-            .icon(() -> new ItemStack(ModItems.SPIRIT_STONE.get()))
+            .icon(() -> new ItemStack(ItemIngredients.SPIRIT_STONE.get()))
             .title(Component.translatable("creativetab.god123awsomemod.cultivation_items"))
             .displayItems((itemDisplayParameters, output) -> {
-                output.accept(ModItems.SPIRIT_STONE);
-                output.accept(ModItems.RAW_MAGIC_STONE);
-                output.accept(ModItems.MYSTIC_IRON_INGOT);
-                output.accept(ModItems.RAW_MYSTIC_IRON);
+                output.accept(ItemIngredients.SPIRIT_STONE);
+                output.accept(ItemIngredients.RAW_MAGIC_STONE);
+                output.accept(ItemIngredients.MYSTIC_IRON_INGOT);
+                output.accept(ItemIngredients.RAW_MYSTIC_IRON);
+
+                output.accept(ItemPill.HEALINGPILL);
+                output.accept(ItemPill.QIRESTORATIONPILL);
+
+                output.accept(ItemTechnique.BASICTECHNIQUE);
             }).build());
 
     public static final Supplier<CreativeModeTab> CULTIVATION_BLOCKS_TAB = CREATIVE_MODE_TAB.register("cultivation_blocks_tab", () -> CreativeModeTab.builder()

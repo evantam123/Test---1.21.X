@@ -1,6 +1,7 @@
 package net.god123.Firstmod;
 
 import net.god123.Firstmod.block.ModBlocks;
+import net.god123.Firstmod.cultivationrealm.CultivationRealmData;
 import net.god123.Firstmod.item.ModCreativeModeTabs;
 import net.god123.Firstmod.item.ModItems;
 import net.god123.Firstmod.mana.ManaCommand;
@@ -50,12 +51,12 @@ public class Firstmod {
         NeoForge.EVENT_BUS.register(this);
 
         ModPlayerMana.register(modEventBus);
-        //ModPlayerCultivationRealm.register(modEventBus);
-
-        ModCreativeModeTabs.register(modEventBus);
+        CultivationRealmData.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModCreativeModeTabs.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 

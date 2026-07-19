@@ -9,13 +9,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Firstmod.MODID);
 
-    public static final DeferredItem<Item> SPIRIT_STONE = ITEMS.register("spirit_stone", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> RAW_MAGIC_STONE = ITEMS.register("raw_magic_stone", () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> MYSTIC_IRON_INGOT = ITEMS.register("mystic_iron_ingot", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> RAW_MYSTIC_IRON = ITEMS.register("raw_mystic_iron", () -> new Item(new Item.Properties()));
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+        ItemIngredients.init();
+        ItemPill.init();
+        ItemTechnique.init();
     }
 }
