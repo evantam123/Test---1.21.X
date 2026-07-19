@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.78'
     id 'idea'
 }
 
@@ -27,6 +27,19 @@ sourceSets.main.resources {
 }
 
 repositories {
+    mavenCentral()
+    maven {
+        name = "ParchmentMC"
+        url = "https://maven.parchmentmc.org/"
+    }
+    maven {
+        name = "NeoForge"
+        url = "https://maven.neoforged.net/releases/"
+    }
+    
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
     // Add here additional repositories if required by some of the dependencies below.
 }
 
@@ -118,6 +131,8 @@ configurations {
 }
 
 dependencies {
+    // Curios API
+    implementation "top.theillusivec4.curios:curios-neoforge:9.2.0+1.21.1"
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
