@@ -7,7 +7,6 @@ import net.god123.Firstmod.item.ModItems;
 import net.god123.Firstmod.mana.ManaCommand;
 import net.god123.Firstmod.mana.ManaHudOverlay;
 import net.god123.Firstmod.mana.ModPlayerMana;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
 

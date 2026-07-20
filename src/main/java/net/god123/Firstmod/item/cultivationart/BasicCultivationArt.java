@@ -7,13 +7,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.TooltipFlag;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.logging.Level;
 
 public class BasicCultivationArt extends Item implements ICurioItem {
 
