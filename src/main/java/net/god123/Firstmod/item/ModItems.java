@@ -1,9 +1,7 @@
 package net.god123.Firstmod.item;
 
 import net.god123.Firstmod.Firstmod;
-import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
@@ -13,6 +11,6 @@ public class ModItems {
         ITEMS.register(eventBus);
         ItemIngredients.init();
         ItemPill.init();
-        ItemTechnique.init();
+        ItemCultivationArt.init();
     }
 }

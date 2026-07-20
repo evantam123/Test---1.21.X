@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.awt.*;
 import java.util.function.Supplier;
 
 public class ModCreativeModeTabs {
@@ -25,10 +24,10 @@ public class ModCreativeModeTabs {
                 output.accept(ItemIngredients.MYSTIC_IRON_INGOT);
                 output.accept(ItemIngredients.RAW_MYSTIC_IRON);
 
-                output.accept(ItemPill.HEALINGPILL);
-                output.accept(ItemPill.QIRESTORATIONPILL);
+                output.accept(ItemPill.HEALING_PILL);
+                output.accept(ItemPill.QIRESTORATION_PILL);
 
-                output.accept(ItemTechnique.BASICTECHNIQUE);
+                output.accept(ItemCultivationArt.BASIC_CULTIVATION_ART);
             }).build());
 
     public static final Supplier<CreativeModeTab> CULTIVATION_BLOCKS_TAB = CREATIVE_MODE_TAB.register("cultivation_blocks_tab", () -> CreativeModeTab.builder()
