@@ -1,13 +1,14 @@
 {
-  "item.god123awsomemod.spirit_stone": "Spirit Stone",
-  "item.god123awsomemod.raw_magic_stone": "Raw Magic Stone",
+  "item.god123awsomemod.low_spirit_stone": "Low Spirit Stone",
+  "item.god123awsomemod.mid_spirit_stone": "Mid Spirit Stone",
+  "item.god123awsomemod.high_spirit_stone": "High Spirit Stone",
   "item.god123awsomemod.mystic_iron_ingot": "Mystic Iron Ingot",
   "item.god123awsomemod.raw_mystic_iron": "Raw Mystic Iron",
 
   "item.god123awsomemod.healing_pill": "Healing Pill",
   "item.god123awsomemod.qi_restoration_pill": "Qi Restoration Pill",
 
-  "item.god123awsomemod.basic_technique": "Basic Technique",
+  "item.god123awsomemod.basic_cultivation_art": "Basic Technique",
 
   "block.god123awsomemod.spirit_stone_block": "Block of Spirit Stone",
   "block.god123awsomemod.spirit_stone_ore": "Spirit Stone Ore",
@@ -15,5 +16,7 @@
   "block.god123awsomemod.mystic_iron_ore": "Mystic Iron Ore",
 
   "creativetab.god123awsomemod.cultivation_items": "Cultivation Items",
-  "creativetab.god123awsomemod.cultivation_blocks": "Cultivation Blocks"
+  "creativetab.god123awsomemod.cultivation_blocks": "Cultivation Blocks",
+
+  "curios.identifier.cultivation_art":"Technique"
 }

@@ -14,7 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 import static net.god123.Firstmod.cultivationrealm.CultivationRealmData.*;
 
-@EventBusSubscriber(modid = "god123awsomemod", bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = "god123awsomemod")
 public class CultivationRealmCommand {
 
     @SubscribeEvent
@@ -27,7 +27,7 @@ public class CultivationRealmCommand {
                         .then(Commands.argument("target", EntityArgument.player())
                                 // SET 指令
                                 .then(Commands.literal("set")
-                                        .then(Commands.argument("level", IntegerArgumentType.integer(0, 5))
+                                        .then(Commands.argument("level", IntegerArgumentType.integer())
                                                 .executes(context -> {
                                                     ServerPlayer player = EntityArgument.getPlayer(context, "target");
                                                     int level = IntegerArgumentType.getInteger(context, "level");
@@ -35,23 +35,14 @@ public class CultivationRealmCommand {
                                                     // ✅ 使用 DataAttachment
                                                     CultivationRealm data = player.getData(CULTIVATION_REALM);
 
-                                                    // 从枚举查找匹配的境界
-                                                    RealmLevel newRealm = null;
-                                                    for (RealmLevel realm : RealmLevel.values()) {
-                                                        if (realm.getLevel() == level) {
-                                                            newRealm = realm;
-                                                            break;
-                                                        }
-                                                    }
-
-                                                    if (newRealm == null) {
+                                                    RealmLevel[] realmLevels = RealmLevel.values();
+                                                    if (level < realmLevels.length && level >= 0) {
+                                                        data.setRealm(realmLevels[level]);
+                                                    } else {
                                                         context.getSource().sendFailure(
-                                                                Component.literal("未知境界！可用境界: 凡人, 炼气期, 筑基期, 金丹期, 元婴期, 化神期")
+                                                                Component.literal("未知境界！可用境界: 凡人, 炼气期, 筑基期, 金丹期, 元婴期, 化神期 0 - 5")
                                                         );
-                                                        return 0;
                                                     }
-
-                                                    data.setRealm(newRealm);
 
                                                     context.getSource().sendSuccess(
                                                             () -> Component.literal(
@@ -70,6 +61,82 @@ public class CultivationRealmCommand {
                                         .executes(context -> {
                                             ServerPlayer player = EntityArgument.getPlayer(context, "target");
                                             CultivationRealm data = player.getData(CULTIVATION_REALM);
+
+                                            Component msg = Component.literal(
+                                                    String.format("§e%s 当前的境界: §b%s",
+                                                            player.getScoreboardName(),
+                                                            data.getRealmName()
+                                                    )
+                                            );
+                                            context.getSource().sendSuccess(() -> msg, false);
+
+                                            return 1;
+                                        })
+                                )
+                                //exp
+                                .then(Commands.literal("exp")
+                                    .then(Commands.literal("set")
+                                        .then(Commands.argument("exp", IntegerArgumentType.integer())
+                                            .executes(context -> {
+                                                ServerPlayer player = EntityArgument.getPlayer(context, "target");
+                                                CultivationRealm data = player.getData(CULTIVATION_REALM);
+                                                int exp = IntegerArgumentType.getInteger(context, "exp");
+                                                data.setExp(exp);
+
+                                                Component msg = Component.literal(
+                                                        String.format("§e%s 当前的exp: §b%s",
+                                                                player.getScoreboardName(),
+                                                                data.getExp()
+                                                        )
+                                                );
+                                                context.getSource().sendSuccess(() -> msg, false);
+
+                                                return 1;
+                                            })
+                                        )
+                                    )
+                                    .then(Commands.literal("get")
+                                        .executes(context -> {
+                                            ServerPlayer player = EntityArgument.getPlayer(context, "target");
+                                            CultivationRealm data = player.getData(CULTIVATION_REALM);
+                                            Component msg = Component.literal(
+                                                    String.format("§e%s 当前的exp: §b%s",
+                                                            player.getScoreboardName(),
+                                                            data.getExp()
+                                                    )
+                                            );
+                                            context.getSource().sendSuccess(() -> msg, false);
+
+                                            return 1;
+                                        })
+                                    )
+                                    .then(Commands.literal("add")
+                                        .then(Commands.argument("exp", IntegerArgumentType.integer())
+                                            .executes(context -> {
+                                                ServerPlayer player = EntityArgument.getPlayer(context, "target");
+                                                CultivationRealm data = player.getData(CULTIVATION_REALM);
+                                                int exp = IntegerArgumentType.getInteger(context, "exp");
+                                                data.addExp(exp);
+
+                                                Component msg = Component.literal(
+                                                        String.format("§e%s 当前的exp: §b%s",
+                                                                player.getScoreboardName(),
+                                                                data.getExp()
+                                                        )
+                                                );
+                                                context.getSource().sendSuccess(() -> msg, false);
+
+                                                return 1;
+                                            })
+                                        )
+                                    )
+                                )
+                                //up
+                                .then(Commands.literal("up")
+                                        .executes(context -> {
+                                            ServerPlayer player = EntityArgument.getPlayer(context, "target");
+                                            CultivationRealm data = player.getData(CULTIVATION_REALM);
+                                            data.RealmUp();
 
                                             Component msg = Component.literal(
                                                     String.format("§e%s 当前的境界: §b%s",
