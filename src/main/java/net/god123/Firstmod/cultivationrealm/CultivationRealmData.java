@@ -14,27 +14,27 @@ public class CultivationRealmData {
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, "god123awsomemod");
 
     public enum RealmLevel implements StringRepresentable {
-        MORTAL("凡人", 0),
-        QI_REFINING("炼气期", 1),
-        FOUNDATION("筑基期", 2),
-        GOLDEN_CORE("金丹期", 3),
-        NASCENT_SOUL("元婴期", 4),
-        SPIRIT_SHEDDING("化神期", 5);
+        MORTAL("凡人", 100),
+        QI_REFINING("炼气期", 1000),
+        FOUNDATION("筑基期", 10000),
+        GOLDEN_CORE("金丹期", 100000),
+        NASCENT_SOUL("元婴期", 1000000),
+        SPIRIT_SHEDDING("化神期", 10000000);
 
         private final String name;
-        private final int level;
+        private final int max_exp;
 
-        RealmLevel(String name, int level) {
+        RealmLevel(String name, int max_exp) {
             this.name =name;
-            this.level = level;
+            this.max_exp = max_exp;
         }
 
         public String getName() {
             return name;
         }
 
-        public int getLevel() {
-            return level;
+        public int getMaxExp() {
+            return max_exp;
         }
 
         @Override
@@ -48,13 +48,16 @@ public class CultivationRealmData {
 
     public static class CultivationRealm {
         private RealmLevel realm;
+        private int exp;
 
         public CultivationRealm() {
             this.realm = RealmLevel.MORTAL;
+            this.exp = 0;
         }
 
-        public CultivationRealm(RealmLevel realm) {
+        public CultivationRealm(RealmLevel realm, int exp) {
             this.realm = realm;
+            this.exp = exp;
         }
 
         public RealmLevel getRealm() {
@@ -65,13 +68,43 @@ public class CultivationRealmData {
             this.realm = realm;
         }
 
+        public int getExp() {
+            return exp;
+        }
+
+        public void setExp(int exp) {
+            this.exp = Math.min(exp, realm.getMaxExp());
+        }
+
+        public void addExp(int exp) {
+            this.exp = Math.min(this.exp + exp, realm.getMaxExp());
+        }
+
+        public boolean isRealmUpExpOk() {
+            return this.exp == realm.getMaxExp();
+        }
+
+        public boolean RealmUp() {
+            if (isRealmUpExpOk()) {
+                RealmLevel[] realmlevels = RealmLevel.values();
+                int currentRealmOrdinal = this.realm.ordinal();
+                if(currentRealmOrdinal < realmlevels.length - 1) {
+                    this.exp = 0;
+                    this.realm = realmlevels[currentRealmOrdinal + 1];
+                    return true;
+                }
+            }
+            return false;
+        }
+
          public String getRealmName() {
             return realm.getName();
          }
 
          public static final Codec<CultivationRealm> CODEC = RecordCodecBuilder.create(instance ->
                  instance.group(
-                         RealmLevel.CODEC.fieldOf("realm").forGetter(CultivationRealm::getRealm)
+                         RealmLevel.CODEC.fieldOf("realm").forGetter(CultivationRealm::getRealm),
+                         Codec.INT.fieldOf("exp").forGetter(CultivationRealm::getExp)
                  ).apply(instance, CultivationRealm::new)
          );
     }

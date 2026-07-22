@@ -1,6 +1,7 @@
 {
-  "item.god123awsomemod.spirit_stone": "靈石",
-  "item.god123awsomemod.raw_magic_stone": "Raw Magic Stone",
+  "item.god123awsomemod.low_spirit_stone": "下品靈石",
+  "item.god123awsomemod.mid_spirit_stone": "中品靈石",
+  "item.god123awsomemod.high_spirit_stone": "上品靈石",
   "item.god123awsomemod.mystic_iron_ingot": "玄鐵錠",
   "item.god123awsomemod.raw_mystic_iron": "玄鐵原礦",
 

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "god123awsomemod:block/spirit_stone_ore"
-  }
-}

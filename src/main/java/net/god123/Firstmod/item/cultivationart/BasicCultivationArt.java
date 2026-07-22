@@ -1,5 +1,6 @@
 package net.god123.Firstmod.item.cultivationart;
 
+import net.god123.Firstmod.cultivationrealm.CultivationRealmData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,6 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+
+import static net.god123.Firstmod.cultivationrealm.CultivationRealmData.CULTIVATION_REALM;
 
 public class BasicCultivationArt extends Item implements ICurioItem {
 
@@ -48,15 +51,15 @@ public class BasicCultivationArt extends Item implements ICurioItem {
 
         // 检查是否是玩家
         if (wearer instanceof Player player) {
-            // 🚫 阻止卸下，并发送提示信息
-            if (hotFix) {
+            CultivationRealmData.CultivationRealm data = wearer.getData(CULTIVATION_REALM);
+            if (data.getExp() == 0 && data.getRealm() == CultivationRealmData.RealmLevel.MORTAL) {
+                return true;
+            } else {
+                // 🚫 阻止卸下，并发送提示信息
                 player.displayClientMessage(
                         Component.literal("§6§l⚠ 你正在修炼 " + "基本功法" + "，无法中途放弃！").withStyle(ChatFormatting.RED),
                         false  // false 表示显示在聊天栏，true 表示显示在动作栏
                 );
-                hotFix = false;
-            } else {
-                hotFix = true;
             }
 
             // 你也可以播放音效

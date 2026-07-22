@@ -1,6 +1,7 @@
 {
-  "item.god123awsomemod.spirit_stone": "Spirit Stone",
-  "item.god123awsomemod.raw_magic_stone": "Raw Magic Stone",
+  "item.god123awsomemod.low_spirit_stone": "Low Spirit Stone",
+  "item.god123awsomemod.mid_spirit_stone": "Mid Spirit Stone",
+  "item.god123awsomemod.high_spirit_stone": "High Spirit Stone",
   "item.god123awsomemod.mystic_iron_ingot": "Mystic Iron Ingot",
   "item.god123awsomemod.raw_mystic_iron": "Raw Mystic Iron",
 
