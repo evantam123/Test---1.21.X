@@ -36,15 +36,17 @@ public class BasicCultivationArt extends Item implements ICurioItem {
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         // 卸下时触发的逻辑
+        LivingEntity wearer = slotContext.entity();
+        if (wearer instanceof Player player && canUnequip(slotContext, stack)) {
+
+        }
     }
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         // 每个 tick 触发的逻辑（比如每秒恢复生命）
     }
-
-    boolean hotFix = true;
-
+    
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
         LivingEntity wearer = slotContext.entity();
@@ -54,14 +56,14 @@ public class BasicCultivationArt extends Item implements ICurioItem {
             CultivationRealmData.CultivationRealm data = wearer.getData(CULTIVATION_REALM);
             if (data.getExp() == 0 && data.getRealm() == CultivationRealmData.RealmLevel.MORTAL) {
                 return true;
-            } else {
-                // 🚫 阻止卸下，并发送提示信息
+            }
+            if (!player.level().isClientSide() && !(player instanceof net.neoforged.neoforge.common.util.FakePlayer)) {
                 player.displayClientMessage(
-                        Component.literal("§6§l⚠ 你正在修炼 " + "基本功法" + "，无法中途放弃！").withStyle(ChatFormatting.RED),
-                        false  // false 表示显示在聊天栏，true 表示显示在动作栏
+                        Component.literal("⚠ 你正在修炼 基本功法，无法中途放弃！")
+                                .withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD),
+                        false // 设置为 false 显示在聊天栏，设置为 true 显示在物品栏上方（ActionBar）
                 );
             }
-
             // 你也可以播放音效
             // player.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.0F);
         }

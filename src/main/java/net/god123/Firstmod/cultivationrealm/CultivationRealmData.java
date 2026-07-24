@@ -10,10 +10,10 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 
-public class CultivationRealmData {
+public class CultivationRealmData{
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, "god123awsomemod");
 
-    public enum RealmLevel implements StringRepresentable {
+    public enum RealmLevel  implements StringRepresentable{
         MORTAL("凡人", 100),
         QI_REFINING("炼气期", 1000),
         FOUNDATION("筑基期", 10000),
@@ -21,16 +21,16 @@ public class CultivationRealmData {
         NASCENT_SOUL("元婴期", 1000000),
         SPIRIT_SHEDDING("化神期", 10000000);
 
-        private final String name;
+        private final String displayName;
         private final int max_exp;
 
-        RealmLevel(String name, int max_exp) {
-            this.name =name;
+        RealmLevel(String displayName, int max_exp) {
+            this.displayName =displayName;
             this.max_exp = max_exp;
         }
 
-        public String getName() {
-            return name;
+        public String getDisplayName() {
+            return displayName;
         }
 
         public int getMaxExp() {
@@ -39,8 +39,8 @@ public class CultivationRealmData {
 
         @Override
         public String getSerializedName() {
-            return name;
-        }
+            return displayName;
+       }
 
         public static final Codec<RealmLevel> CODEC = StringRepresentable.fromValues(RealmLevel::values);
 
@@ -98,7 +98,7 @@ public class CultivationRealmData {
         }
 
          public String getRealmName() {
-            return realm.getName();
+            return realm.getDisplayName();
          }
 
          public static final Codec<CultivationRealm> CODEC = RecordCodecBuilder.create(instance ->

@@ -7,7 +7,11 @@ import net.god123.Firstmod.item.ModItems;
 import net.god123.Firstmod.mana.ManaCommand;
 import net.god123.Firstmod.mana.ManaHudOverlay;
 import net.god123.Firstmod.mana.ModPlayerMana;
+import net.god123.Firstmod.network.sync.CultivationDataSyncPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -103,5 +107,19 @@ public class Firstmod {
                     (ManaHudOverlay::render)
             );
         }
+
+        @SubscribeEvent
+        public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+            if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+                // 延遲 1 tick 發送，確保客戶端準備好
+                serverPlayer.server.execute(() -> {
+                    CultivationRealmData.CultivationRealm data = serverPlayer.getData(CultivationRealmData.CULTIVATION_REALM);
+                    // 同步到客戶端
+                    PacketDistributor.sendToPlayer(serverPlayer,
+                            new CultivationDataSyncPacket(data.getRealm().name(), data.getExp()));
+                });
+            }
+        }
+
     }
 }

@@ -3,6 +3,7 @@ package net.god123.Firstmod.cultivationrealm;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import net.god123.Firstmod.network.sync.CultivationDataSyncPacket;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -11,6 +12,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import static net.god123.Firstmod.cultivationrealm.CultivationRealmData.*;
 
@@ -38,6 +40,7 @@ public class CultivationRealmCommand {
                                                     RealmLevel[] realmLevels = RealmLevel.values();
                                                     if (level < realmLevels.length && level >= 0) {
                                                         data.setRealm(realmLevels[level]);
+                                                        PacketDistributor.sendToPlayer(player, new CultivationDataSyncPacket(data.getRealm().name(), data.getExp()));
                                                     } else {
                                                         context.getSource().sendFailure(
                                                                 Component.literal("未知境界！可用境界: 凡人, 炼气期, 筑基期, 金丹期, 元婴期, 化神期 0 - 5")
@@ -82,6 +85,7 @@ public class CultivationRealmCommand {
                                                 CultivationRealm data = player.getData(CULTIVATION_REALM);
                                                 int exp = IntegerArgumentType.getInteger(context, "exp");
                                                 data.setExp(exp);
+                                                PacketDistributor.sendToPlayer(player, new CultivationDataSyncPacket(data.getRealm().name(), data.getExp()));
 
                                                 Component msg = Component.literal(
                                                         String.format("§e%s 当前的exp: §b%s",
@@ -117,6 +121,7 @@ public class CultivationRealmCommand {
                                                 CultivationRealm data = player.getData(CULTIVATION_REALM);
                                                 int exp = IntegerArgumentType.getInteger(context, "exp");
                                                 data.addExp(exp);
+                                                PacketDistributor.sendToPlayer(player, new CultivationDataSyncPacket(data.getRealm().name(), data.getExp()));
 
                                                 Component msg = Component.literal(
                                                         String.format("§e%s 当前的exp: §b%s",

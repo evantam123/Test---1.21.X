@@ -18,5 +18,10 @@
   "creativetab.god123awsomemod.cultivation_items": "修仙物品",
   "creativetab.god123awsomemod.cultivation_blocks": "修仙方塊",
 
+  "key.category.god123awsomemod.cultivation": "修仙",
+  "key.god123awsomemod.open_cultivation_gui": "打开修仙界面",
+  "key.god123awsomemod.realm_up": "尝试突破境界",
+  "key.god123awsomemod.cultivate": "打坐修炼",
+
   "curios.identifier.cultivation_art":"功法"
 }

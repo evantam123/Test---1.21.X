@@ -8,7 +8,7 @@
   "item.god123awsomemod.healing_pill": "Healing Pill",
   "item.god123awsomemod.qi_restoration_pill": "Qi Restoration Pill",
 
-  "item.god123awsomemod.basic_cultivation_art": "Basic Technique",
+  "item.god123awsomemod.basic_cultivation_art": "Basic Cultivation Art",
 
   "block.god123awsomemod.spirit_stone_block": "Block of Spirit Stone",
   "block.god123awsomemod.spirit_stone_ore": "Spirit Stone Ore",
@@ -18,5 +18,10 @@
   "creativetab.god123awsomemod.cultivation_items": "Cultivation Items",
   "creativetab.god123awsomemod.cultivation_blocks": "Cultivation Blocks",
 
-  "curios.identifier.cultivation_art":"Technique"
+  "key.category.god123awsomemod.cultivation": "Cultivation",
+  "key.god123awsomemod.open_cultivation_gui": "Open Cultivation GUI",
+  "key.god123awsomemod.realm_up": "Attempt Realm Breakthrough",
+  "key.god123awsomemod.cultivate": "Cultivate",
+
+  "curios.identifier.cultivation_art":"Cultivation Art"
 }
